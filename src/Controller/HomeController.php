@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="app_home")
      */
     public function index()
     {
-        return $this->redirectToRoute('dashboard');
+        return $this->redirectToRoute('app_dashboard');
     }
 }
