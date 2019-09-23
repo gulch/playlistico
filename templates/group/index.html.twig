@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Group index{% endblock %}
+
+{% block body %}
+    {% include('_partials/nav.html.twig') %}
+
+    <div class="container is-widescreen">
+
+        <p>&nbsp;</p>
+
+        <h1 class="title is-1">
+            Groups
+        </h1>
+
+        <div class="tabs is-toggle">
+            <ul>
+                <li>
+                    <a href="{{ path('route_group_new') }}">Create new</a>
+                </li>
+            </ul>
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Created_at</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for group in groups %}
+                <tr>
+                    <td>{{ group.id }}</td>
+                    <td>{{ group.title }}</td>
+                    <td>{{ group.createdAt ? group.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>
+                        <a href="{{ path('route_group_show', {'id': group.id}) }}">show</a>
+                        <a href="{{ path('route_group_edit', {'id': group.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}

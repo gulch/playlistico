@@ -1,0 +1,23 @@
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Group index{% endblock %}
+
+{% block body %}
+    {% include('_partials/nav.html.twig') %}
+
+    <div class="container is-widescreen">
+
+        <p>&nbsp;</p>
+
+        <h1 class="title is-1">
+            Add new group
+        </h1>
+
+
+        {{ include('group/_form.html.twig') }}
+
+    </div>
+
+{% endblock %}
