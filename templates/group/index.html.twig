@@ -13,32 +13,49 @@
             Groups
         </h1>
 
-        <div class="tabs is-toggle">
-            <ul>
-                <li>
-                    <a href="{{ path('route_group_new') }}">Create new</a>
-                </li>
-            </ul>
-        </div>
+        <a href="{{ path('route_group_new') }}" class="button">
+            <span class="icon is-small">
+              <i class="fas fa-plus"></i>
+            </span>
+            <span>Create new</span>
+        </a>
 
-        <table class="table">
+        <p>&nbsp;</p>
+
+        <table class="table is-fullwidth is-striped">
             <thead>
             <tr>
                 <th>Id</th>
                 <th>Title</th>
-                <th>Created_at</th>
-                <th>actions</th>
+                <th>Create Date</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             {% for group in groups %}
                 <tr>
                     <td>{{ group.id }}</td>
-                    <td>{{ group.title }}</td>
+                    <td><strong>{{ group.title }}</strong></td>
                     <td>{{ group.createdAt ? group.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                     <td>
-                        <a href="{{ path('route_group_show', {'id': group.id}) }}">show</a>
-                        <a href="{{ path('route_group_edit', {'id': group.id}) }}">edit</a>
+                        <div class="buttons has-addons">
+                            <a href="{{ path('route_group_show', {'id': group.id}) }}"
+                               class="button"
+                               title="Show"
+                            >
+                                <span class="icon is-small">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                            </a>
+                            <a href="{{ path('route_group_edit', {'id': group.id}) }}"
+                               title="Edit"
+                               class="button"
+                            >
+                                <span class="icon is-small">
+                                    <i class="fas fa-marker"></i>
+                                </span>
+                            </a>
+                        </div>
                     </td>
                 </tr>
             {% else %}

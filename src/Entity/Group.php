@@ -26,6 +26,11 @@ class Group
      */
     private $created_at;
 
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,12 +51,5 @@ class Group
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
-    }
-
-    public function setCreatedAt(): self
-    {
-        $this->created_at = new \DateTime();
-
-        return $this;
     }
 }

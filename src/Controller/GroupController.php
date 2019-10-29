@@ -39,7 +39,7 @@ class GroupController extends AbstractController
             $entityManager->persist($group);
             $entityManager->flush();
 
-            return $this->redirectToRoute('group_index');
+            return $this->redirectToRoute('route_group_index');
         }
 
         return $this->render('group/new.html.twig', [
@@ -69,7 +69,7 @@ class GroupController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('group_index');
+            return $this->redirectToRoute('route_group_index');
         }
 
         return $this->render('group/edit.html.twig', [
