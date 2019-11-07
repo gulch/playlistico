@@ -17,6 +17,8 @@ class GroupController extends AbstractController
 {
     /**
      * @Route("/", name="route_group_index", methods={"GET"})
+     * @param GroupRepository $groupRepository
+     * @return Response
      */
     public function index(GroupRepository $groupRepository): Response
     {
@@ -27,6 +29,8 @@ class GroupController extends AbstractController
 
     /**
      * @Route("/new", name="route_group_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -50,6 +54,8 @@ class GroupController extends AbstractController
 
     /**
      * @Route("/{id}", name="route_group_show", methods={"GET"})
+     * @param Group $group
+     * @return Response
      */
     public function show(Group $group): Response
     {
@@ -60,6 +66,9 @@ class GroupController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="route_group_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Group $group
+     * @return Response
      */
     public function edit(Request $request, Group $group): Response
     {
@@ -80,6 +89,9 @@ class GroupController extends AbstractController
 
     /**
      * @Route("/{id}", name="route_group_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Group $group
+     * @return Response
      */
     public function delete(Request $request, Group $group): Response
     {

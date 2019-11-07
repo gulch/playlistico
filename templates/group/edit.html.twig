@@ -3,11 +3,29 @@
 {% block title %}Edit Group{% endblock %}
 
 {% block body %}
-    <h1>Edit Group</h1>
+    {% include('_partials/nav.html.twig') %}
 
-    {{ include('group/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="container is-widescreen">
 
-    <a href="{{ path('route_group_index') }}">back to list</a>
+        <p>&nbsp;</p>
 
-    {{ include('group/_delete_form.html.twig') }}
+        <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="{{ path('route_dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ path('route_group_index') }}">Groups</a></li>
+                <li class="is-active"><a aria-current="page">Edit group «{{ group.title }}»</a></li>
+            </ul>
+        </nav>
+
+        <h1 class="title is-1">
+            Edit group «{{ group.title }}»
+        </h1>
+
+        {{ include('group/_form.html.twig', {'button_label': 'Update'}) }}
+
+        <p>&nbsp;</p>
+
+        {{ include('group/_delete_form.html.twig') }}
+
+    </div>
 {% endblock %}

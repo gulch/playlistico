@@ -35,7 +35,13 @@
             {% for group in groups %}
                 <tr>
                     <td>{{ group.id }}</td>
-                    <td><strong>{{ group.title }}</strong></td>
+                    <td>
+                        <strong>
+                            <a href="{{ path('route_group_show', {'id': group.id}) }}">
+                                {{ group.title }}
+                            </a>
+                        </strong>
+                    </td>
                     <td>{{ group.createdAt ? group.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                     <td>
                         <div class="buttons has-addons">

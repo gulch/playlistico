@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20191007104238 extends AbstractMigration
+final class Version20191029181820 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,11 @@ final class Version20191007104238 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'sqlite', 'Migration can only be executed safely on \'sqlite\'.');
 
-        $this->addSql('ALTER TABLE Channel ADD COLUMN note CLOB DEFAULT NULL');
+        $this->addSql('CREATE TABLE "Channel" (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR(255) NOT NULL, url VARCHAR(255) NOT NULL, group_id INTEGER DEFAULT NULL, logo_filename VARCHAR(255) DEFAULT NULL, tvg_id VARCHAR(255) DEFAULT NULL, created_at DATETIME NOT NULL, note CLOB DEFAULT NULL)');
+        $this->addSql('CREATE TABLE "Group" (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL)');
+        $this->addSql('CREATE TABLE "User" (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles CLOB NOT NULL --(DC2Type:json)
+        , password VARCHAR(255) NOT NULL)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_2DA17977E7927C74 ON "User" (email)');
     }
 
     public function down(Schema $schema) : void
@@ -30,10 +34,8 @@ final class Version20191007104238 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'sqlite', 'Migration can only be executed safely on \'sqlite\'.');
 
-        $this->addSql('CREATE TEMPORARY TABLE __temp__Channel AS SELECT id, title, url, group_id, logo_filename, tvg_id, created_at FROM "Channel"');
         $this->addSql('DROP TABLE "Channel"');
-        $this->addSql('CREATE TABLE "Channel" (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR(255) NOT NULL, url VARCHAR(255) NOT NULL, group_id INTEGER DEFAULT NULL, logo_filename VARCHAR(255) DEFAULT NULL, tvg_id VARCHAR(255) DEFAULT NULL, created_at DATETIME NOT NULL)');
-        $this->addSql('INSERT INTO "Channel" (id, title, url, group_id, logo_filename, tvg_id, created_at) SELECT id, title, url, group_id, logo_filename, tvg_id, created_at FROM __temp__Channel');
-        $this->addSql('DROP TABLE __temp__Channel');
+        $this->addSql('DROP TABLE "Group"');
+        $this->addSql('DROP TABLE "User"');
     }
 }
