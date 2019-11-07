@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Channel index{% endblock %}
+
+{% block body %}
+    <h1>Channel index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Url</th>
+                <th>Group_id</th>
+                <th>Logo_filename</th>
+                <th>Tvg_id</th>
+                <th>Created_at</th>
+                <th>Note</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for channel in channels %}
+            <tr>
+                <td>{{ channel.id }}</td>
+                <td>{{ channel.title }}</td>
+                <td>{{ channel.url }}</td>
+                <td>{{ channel.groupId }}</td>
+                <td>{{ channel.logoFilename }}</td>
+                <td>{{ channel.tvgId }}</td>
+                <td>{{ channel.createdAt ? channel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ channel.note }}</td>
+                <td>
+                    <a href="{{ path('route_channel_show', {'id': channel.id}) }}">show</a>
+                    <a href="{{ path('route_channel_edit', {'id': channel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('route_channel_new') }}">Create new</a>
+{% endblock %}

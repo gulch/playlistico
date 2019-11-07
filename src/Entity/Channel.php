@@ -51,6 +51,11 @@ class Channel
      */
     private $note;
 
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,13 +124,6 @@ class Channel
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
-    }
-
-    public function setCreatedAt(): self
-    {
-        $this->created_at = new \DateTime();
-
-        return $this;
     }
 
     public function getNote(): ?string
