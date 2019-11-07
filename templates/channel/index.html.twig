@@ -43,7 +43,11 @@
                     <td>{{ channel.id }}</td>
                     <td>{{ channel.title }}</td>
                     <td>{{ channel.url }}</td>
-                    <td>{{ channel.groupId }}</td>
+                    <td>
+                        <a href="{{ path('route_group_show', {'id': channel.channelGroup.id}) }}">
+                            {{ channel.channelGroup.title }}
+                        </a>
+                    </td>
                     <td>{{ channel.logoFilename }}</td>
                     <td>{{ channel.tvgId }}</td>
                     <td>{{ channel.createdAt ? channel.createdAt|date('Y-m-d H:i:s') : '' }}</td>

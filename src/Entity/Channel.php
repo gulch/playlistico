@@ -27,11 +27,6 @@ class Channel
     private $url;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $group_id;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $logo_filename;
@@ -50,6 +45,11 @@ class Channel
      * @ORM\Column(type="text", nullable=true)
      */
     private $note;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Group", inversedBy="channels")
+     */
+    private $channel_group;
 
     public function __construct()
     {
@@ -81,18 +81,6 @@ class Channel
     public function setUrl(string $url): self
     {
         $this->url = $url;
-
-        return $this;
-    }
-
-    public function getGroupId(): ?int
-    {
-        return $this->group_id;
-    }
-
-    public function setGroupId(?int $group_id): self
-    {
-        $this->group_id = $group_id;
 
         return $this;
     }
@@ -134,6 +122,18 @@ class Channel
     public function setNote(?string $note): self
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    public function getChannelGroup(): ?Group
+    {
+        return $this->channel_group;
+    }
+
+    public function setChannelGroup(?Group $channel_group): self
+    {
+        $this->channel_group = $channel_group;
 
         return $this;
     }
