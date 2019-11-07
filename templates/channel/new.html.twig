@@ -3,9 +3,26 @@
 {% block title %}New Channel{% endblock %}
 
 {% block body %}
-    <h1>Create new Channel</h1>
+    {% include('_partials/nav.html.twig') %}
 
-    {{ include('channel/_form.html.twig') }}
+    <div class="container is-widescreen">
 
-    <a href="{{ path('route_channel_index') }}">back to list</a>
+        <p>&nbsp;</p>
+
+        <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="{{ path('route_dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ path('route_channel_index') }}">Channels</a></li>
+                <li class="is-active"><a aria-current="page">Create new channel</a></li>
+            </ul>
+        </nav>
+
+        <h1 class="title is-1">
+            Create new channel
+        </h1>
+
+        {{ include('channel/_form.html.twig') }}
+
+    </div>
+
 {% endblock %}

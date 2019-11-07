@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Channel;
+use App\Entity\Group;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,12 +16,14 @@ class ChannelType extends AbstractType
         $builder
             ->add('title')
             ->add('url')
-            ->add('group_id')
+            ->add('group_id', EntityType::class, [
+                'class' => Group::class,
+                'choice_label' => 'title',
+                'placeholder' => 'Choose an group...',
+            ])
             ->add('logo_filename')
             ->add('tvg_id')
-            ->add('created_at')
-            ->add('note')
-        ;
+            ->add('note');
     }
 
     public function configureOptions(OptionsResolver $resolver)

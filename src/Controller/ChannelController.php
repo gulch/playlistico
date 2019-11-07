@@ -39,7 +39,7 @@ class ChannelController extends AbstractController
             $entityManager->persist($channel);
             $entityManager->flush();
 
-            return $this->redirectToRoute('channel_index');
+            return $this->redirectToRoute('route_channel_index');
         }
 
         return $this->render('channel/new.html.twig', [
@@ -69,7 +69,7 @@ class ChannelController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('channel_index');
+            return $this->redirectToRoute('route_channel_index');
         }
 
         return $this->render('channel/edit.html.twig', [
@@ -89,6 +89,6 @@ class ChannelController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('channel_index');
+        return $this->redirectToRoute('route_channel_index');
     }
 }

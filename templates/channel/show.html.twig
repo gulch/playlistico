@@ -3,10 +3,30 @@
 {% block title %}Channel{% endblock %}
 
 {% block body %}
-    <h1>Channel</h1>
+    {% include('_partials/nav.html.twig') %}
 
-    <table class="table">
-        <tbody>
+    <div class="container is-widescreen">
+
+        <p>&nbsp;</p>
+
+        <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="{{ path('route_dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ path('route_channel_index') }}">Channels</a></li>
+                <li class="is-active"><a aria-current="page">Show channel «{{ channel.title }}»</a></li>
+            </ul>
+        </nav>
+
+        <h1 class="title is-1">
+            Show channel «{{ channel.title }}»
+        </h1>
+
+        <a class="link button" href="{{ path('route_channel_edit', {'id': group.id}) }}">Edit this channel</a>
+
+        <p>&nbsp;</p>
+
+        <table class="table is-fullwidth is-striped">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ channel.id }}</td>
@@ -39,12 +59,12 @@
                 <th>Note</th>
                 <td>{{ channel.note }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('route_channel_index') }}">back to list</a>
+        <p>&nbsp;</p>
 
-    <a href="{{ path('route_channel_edit', {'id': channel.id}) }}">edit</a>
+        {{ include('channel/_delete_form.html.twig') }}
 
-    {{ include('channel/_delete_form.html.twig') }}
+    </div>
 {% endblock %}
